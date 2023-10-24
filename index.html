@@ -9,14 +9,13 @@
 <body>
 <h1>Quiz</h1>
 
-<h2></h2>       <!--question goes here-->
+<h2 id="question"></h2>       <!--question goes here-->
 
-<div id="try-again-container" style="display:none;"><button id="try-again">Try Again</button></div>
-<ul>
-    <li><button class="submit-answer" id="0"></button></li>
-    <li><button class="submit-answer" id="1"></button></li>
-    <li><button class="submit-answer" id="2"></button></li>
-    <li><button class="submit-answer" id="3"></button></li>
+<ul class = "submit-answer">
+    <li><button class="button" id="0"></button></li>
+    <li><button class="button" id="1"></button></li>
+    <li><button class="button" id="2"></button></li>
+    <li><button class="button" id="3"></button></li>
 </ul>
 <ul class = infoBox>
     <li id = score></li>
@@ -24,7 +23,8 @@
     <li id = hi-score></li>
     <li id = saved-player></li>
 </ul>
-<button id = new-game>NEW GAME</button>
+<button class="button" id = "new-game">NEW GAME</button>
+
 <script src="./Assets/js/script.js"></script>
 </body>
 </html>

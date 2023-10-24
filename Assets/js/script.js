@@ -16,8 +16,8 @@ var dispScore = document.querySelector(".score")
 var timerCountEl = document.querySelector("#timer");
 var hiScore = document.querySelector("#hi-score");
 var savedName = document.querySelector("saved-player");
-var questionPlace = document.getElementsByTagName("h2")
-var nextQuestion
+var questionDisplay = document.getElementById("question");
+var answerDisplay = document.querySelector(".submit-answer")
 var score
 var timer;
 var timerCount
@@ -26,41 +26,100 @@ var victory = false;
 var timeOut = false;
 var endScore;
 var playerName = "";
-
-var answer;
+let questionNumber
 var correctAnswer;
-var questions = [
+let randomQuestion
+``
+const questions = [
     {
         question: "Question one?",
-        answer: ["2,4,6,8"],
-        correct: 2
+        answers: [
+            {text: "a", correct: false},
+            {text: "b", correct: true},
+            {text: "c", correct: false},
+            {text: "d", correct: false}
+        ]
     },
     {
         question: "Question two?",
-        answer: ["3,5,7,9"],
-        correct: 1
+        answers: [
+            {text: "1", correct: false},
+            {text: "2", correct: true},
+            {text: "3", correct: false},
+            {text: "4", correct: false}
+        ]
     },
     {
         question: "Question three?",
-        answer: ["a,b,c,d"],
-        correct: 0
+        answers: [
+            {text: "5", correct: false},
+            {text: "6", correct: true},
+            {text: "7", correct: false},
+            {text: "8", correct: false}
+        ]
     },
     {
         question: "Question four?",
-        answer: ["x,y,z,cat"],
-        correct: 3
+        answers: [
+            {text: "9", correct: false},
+            {text: "8", correct: true},
+            {text: "7", correct: false},
+            {text: "6", correct: false}
+        ]
     },
 ];
-
-
+clearButtons()
 //click start button
-function newGame(questionNumber) {
+function newGame() {
     victory = false;
     timeOut = false;
-    timerCount = 100;
-    score = 0
-    questionPlace.textContent(questions[questionNumber].question);
-    
+    timerCount = 10000;
+    score = 0;
+    randomQuestion = questions.sort(() =>Math.random() -.5)
+    questionNumber = [0];
+    nextQuestion()
+}
+
+function nextQuestion() {
+
+    clearButtons();
+    showQuestion(randomQuestion[questionNumber]);
+}
+
+function showQuestion(question) {
+    var currentQuestion = (questions[questionNumber].question);
+    questionDisplay.innerText=currentQuestion;
+
+    question.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.textContent = answer.text;
+        button.classList.add("button");
+        if(answer.correct) {
+            button.dataset.correct = answer.correct //sets "corrext" data attribute to the button
+        }
+        button.addEventListener("click", selectAnswer)
+        answerDisplay.appendChild(button);  
+        
+    })
+}
+
+function selectAnswer(a){
+    const selButton = a.target    ;          //.target returns the HTML element that triggered an event.
+     const correct = selButton.dataset.correct; //check if it has a "coreect" parameter as set in showQuestion function
+     setStatusClass(document.body, correct)
+     Array.from(selectAnswer.children).forEach (button => {
+        setStatusClass(button, button.dataset.correct);
+     })
+
+    function setStatusClass(element, correct) {
+        clearStatusClass(element)
+        if (correct) {
+          element.classList.add('correct')
+     } else {
+          element.classList.add('wrong')
+     }
+    }
+
 }
     //on click, a question appears with 4 possible answers
     //at the same time, timer appears and starts counting down. this is a timer for the ENTIRE game not just a question.
@@ -111,4 +170,10 @@ endScore.textContent = endScore;
 
 
     //new game button event listener
+    function clearButtons() {                                   
+        while (answerDisplay.firstChild) {
+            answerDisplay.removeChild(answerDisplay.firstChild)
+        }
+    }
+    
 newGameButton.addEventListener("click", newGame)

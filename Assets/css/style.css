@@ -17,7 +17,7 @@ body {
 
 ul {
    list-style-type:none;
-  margin: 0 auto;
+   margin: 0 auto;
    list-style:none;
    padding:0;
 }
@@ -26,13 +26,20 @@ li {
   list-style:none;
 }
 
-.infoBox {
+.infoBox{
     display:block;
     width: 600px;
     border:1px black solid;
     height: 100px;
-    align-items: center;
-    justify-content: center;
+    
+}
+
+.infoBox li{
+      display:inline-flex;
+      margin-left: 10;
+      margin-right: 10;
+
+      
 }
 
 
@@ -44,10 +51,14 @@ li {
       background-color: #516363;
       color: #fff;
       font-family: 'Oswald', sans-serif;
-	  -webkit-border-radius: 1000px;
+	-webkit-border-radius: 1000px;
       border-radius: 1000px;
       outline: none;
       border: none;
+}
+
+.hide {
+      display:none;
 }
 
 button:active {

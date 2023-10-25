@@ -13,23 +13,18 @@
 
 var newGameButton = document.querySelector("#new-game");
 var dispScore = document.querySelector(".score")
+var dispHiSore = document.querySelector(".hi-score")
 var timerCountEl = document.querySelector("#timer");
-var hiScore = document.querySelector("#hi-score");
 var savedName = document.querySelector("saved-player");
 var questionDisplay = document.getElementById("question");
 var answerDisplay = document.querySelector(".submit-answer")
-var score
+var gameOverEl = document.querySelector("#end-game")
+var score = 0
 var timer = document.getElementById("timer");
 let timerCount = 100;
-var saveScore
-var victory = false;
-var timeOut = false;
-var endScore;
 var playerName = "";
-let questionNumber
-var correctAnswer;
-let randomQuestion
-``
+
+
 const questions = [
     {
         question: "Question one?",
@@ -49,22 +44,59 @@ const questions = [
            "c",
            "d"
         ],
-        correct: 3
+        correct: "c"
+    },
+    {
+        question: "Question three?",
+        answers: [
+           "a",
+           "b",
+           "c",
+           "d"
+        ],
+        correct: "c"
+    },
+    {
+        question: "Question four?",
+        answers: [
+           "a",
+           "b",
+           "c",
+           "d"
+        ],
+        correct: "c"
+    },
+    {
+        question: "Question five?",
+        answers: [
+           "a",
+           "b",
+           "c",
+           "d"
+        ],
+        correct: "c"
     },
 
 ];
+var questionsNumber = questions.length;
+
 
 function startGame() {
     newGameButton.addEventListener("click", () => {
+        timerCount = 100
+        score = 0
         startTimer()
         showQuestion()
+        newGameButton.classList.add("hide")
+        
+
     })
 }
+
 startGame()
 
-
-
 function showQuestion() {
+
     //randomize const questions
     let randomizer = Math.floor(Math.random() * questions.length)
     for (let i = 0; i < questions.length; i++) {
@@ -76,13 +108,20 @@ function showQuestion() {
         answerDisplay.appendChild(createButton);
         createButton.setAttribute("class","button");
         createButton.addEventListener("click",() => {
+            questionsNumber--
+            if (questionsNumber <= 0) {
+                gameOver()
+            }
             setTimeout(()=> {
                 showQuestion()
             },1000)
             if (createButton.innerText.includes (`${currentQuestion.correct}`) ===true) {
                 createButton.classList.add("correctStyle")
+                score++
+
             } else {
-                badAnswer()
+                createButton.classList.add("incorrectStyle")
+                timerCount -= 10
             }
         })
         createButton.textContent = `${possibleAnswer}`    
@@ -96,29 +135,23 @@ function startTimer(){
         timer.textContent = timerCount;
             if (timerCount <= 0) {
                 clearInterval(countdown)
-                alert("TIME OUT !");
+                gameOver()
+
             }
     },1000)
 }
-
-// time penalty for wrong  answer
-function penalty(){
-    timerCount -= 10
+function gameOver() {
+    questionDisplay.classList.add("hide")
+    answerDisplay.classList.add("hide")
+    newGameButton.classList.remove("hide")
+    gameOverEl.classList.remove("hide")
 }
 
-function goodAnswer() {
-    createButton.setAttribute("class","correctStyle")
-    endScore++
+//create var that stores question lengths as number
+//each click of answer button removes 1 from that var
+//when it reaches 0, go to gameover
+function questionsCountdown(){
+
+    console.log(questionsNumber)
+
 }
-
-function badAnswer() {
-
-}
-
-
-    function clearButtons() {                                   
-        while (answerDisplay.firstChild) {
-            answerDisplay.removeChild(answerDisplay.firstChild)
-        }
-    }
-    

@@ -1,7 +1,7 @@
 
 <html>
 <head>
-    <title>a quiz</title>
+        <title>a quiz</title>
         <meta name="viewport" content="width=device-width">
         <link href="Assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
@@ -10,15 +10,20 @@
 
 <h2 id="question"></h2>       <!--question goes here-->
 
-<ul class = "submit-answer"></ul>
+<div class = "submit-answer"></div>
 
-<ul class = infoBox>
-    <li id = score></li>
-    <li id = timer></li>
+<ul class = infoBox class = hide>
+    <li>Score: <span id = score></span></li>
+    <li>time left: <span id = timer></span></li>
     <li id = hi-score></li>
     <li id = saved-player></li>
 </ul>
-<button class="button" id = "new-game">NEW GAME</button>
+<button class="button" class = "hide" id = "new-game" >NEW GAME</button>
+<div id="end-game" class = "hide">
+    <h3>Game Over!</h3>
+    <p>You scored <span id = "score"></span> points.</p>
+    <p>Enter your name: <input type="text" id="player-name" max="8"/> <button id = "send-score-btn">Submit</button> </p>
+</div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="./Assets/js/script.js"></script>
 </body>

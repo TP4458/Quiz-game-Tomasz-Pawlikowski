@@ -1,5 +1,17 @@
 # 04 Web APIs: Code Quiz
 
+## Description
+
+This quiz displays a set of question in a random order. The game is timed. Each correctly anwered question increases player score, incorrect answer causes the timer to reduce. Game ends when all questions are answered or the timer reaches 0. Player can save his store and name into local storage.
+
+## Deployed URL
+
+
+
+## Screenshot
+
+![Alt text](quizpage-1.JPG)
+
 ## Your Task
 
 At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges. 

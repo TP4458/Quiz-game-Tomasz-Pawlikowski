@@ -15,7 +15,7 @@
 
 
 body {
-	color: #413D3D;
+	color: #1b2020;
 	font-family: 'ZX Spectrum-7 Regular', sans-serif;
       font-size: 50px;
 	width: 95%;
@@ -26,15 +26,6 @@ body {
 h2 {
       font-family: 'ZX Spectrum7 Bold Regular', sans-serif;
       font-size: 50px;
-}
-
-* {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 ul {
@@ -65,10 +56,10 @@ li {
 #submit {
       width: 50px;
       margin: 3px;
-      background-color: #516363;
+      background-color: #1b2020;
       color: white;
       font-family: 'ZX Spectrum-7 Regular', sans-serif;
-      font-size: 30px
+      font-size: 40px
 
 }
 
@@ -84,12 +75,12 @@ input[type="text"] {
      
       margin:12px 20px;
       padding: 10px 0;
-      background-color: #516363;
+      background-color: #1b2020;
       color: #fff;
       font-family: 'ZX Spectrum7 Bold Regular', sans-serif;
       font-size: 40px;
-	-webkit-border-radius: 1000px;
-      border-radius: 1000px;
+	-webkit-border-radius: 10px;
+      border-radius: 10px;
       outline: none;
       border: none;
 }

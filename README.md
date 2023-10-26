@@ -6,7 +6,7 @@ This quiz displays a set of question in a random order. The game is timed. Each 
 
 ## Deployed URL
 
-
+[https://tp4458.github.io/Quiz-game-Tomasz-Pawlikowski/](https://tp4458.github.io/Quiz-game-Tomasz-Pawlikowski/)
 
 ## Screenshot
 

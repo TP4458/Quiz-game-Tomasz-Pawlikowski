@@ -23,7 +23,7 @@ var dispPlayer = document.getElementById("saved-player")
 var score;
 var timer = document.getElementById("timer");
 let timerCount = 100;
-var playerName = "";
+var playerName= "";
 
 
 const questions = [

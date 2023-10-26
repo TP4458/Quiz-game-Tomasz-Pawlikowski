@@ -13,13 +13,14 @@
 
 var newGameButton = document.querySelector("#new-game");
 var dispScore = document.querySelector(".score")
-var dispHiSore = document.querySelector(".hi-score")
 var timerCountEl = document.querySelector("#timer");
-var savedName = document.querySelector("saved-player");
+var saveDataBtn = document.getElementById("send-score-btn")
 var questionDisplay = document.getElementById("question");
 var answerDisplay = document.querySelector(".submit-answer")
 var gameOverEl = document.querySelector("#end-game")
-var score = 0
+var dispSavedScore = document.getElementById("saved-score")
+var dispPlayer = document.getElementById("saved-player")
+var score;
 var timer = document.getElementById("timer");
 let timerCount = 100;
 var playerName = "";
@@ -27,76 +28,76 @@ var playerName = "";
 
 const questions = [
     {
-        question: "Question one?",
+        question: "Which data type can be defines as true or false? ",
         answers: [
-           "1",
-           "2",
-           "3",
-           "4"
+           "String",
+           "Boolean",
+           "Integer",
+           "Object"
         ],
-        correct: 2
+        correct: "Bool"
     },
     {
-        question: "Question two?",
+        question: "Which keyword referes to the object from which it was called?",
         answers: [
-           "a",
-           "b",
-           "c",
-           "d"
+           "Take",
+           "That",
+           "This",
+           "There"
         ],
-        correct: "c"
+        correct: "This"
     },
     {
-        question: "Question three?",
+        question: "Which symbol is used for comments in Javascript?",
         answers: [
-           "a",
-           "b",
-           "c",
-           "d"
+           "//",
+           "\\\\",
+           "||",
+           "-_-"
         ],
-        correct: "c"
+        correct: "//"
     },
     {
-        question: "Question four?",
+        question: "Which of these is not a looping structure in Javascript?",
         answers: [
-           "a",
-           "b",
-           "c",
-           "d"
+           "For",
+           "While",
+           "Do-while",
+           "Whilst"
         ],
-        correct: "c"
+        correct: "While"
     },
     {
-        question: "Question five?",
+        question: "Who developed Javascript language?",
         answers: [
-           "a",
-           "b",
-           "c",
-           "d"
+           "Netscape",
+           "Microsoft",
+           "Elon Musk",
+           "John McAffe"
         ],
-        correct: "c"
+        correct: "Net"
     },
 
 ];
 var questionsNumber = questions.length;
-
-
+SaveInfo()
 function startGame() {
     newGameButton.addEventListener("click", () => {
         timerCount = 100
         score = 0
         startTimer()
+        
         showQuestion()
         newGameButton.classList.add("hide")
-        
-
-    })
+        questionDisplay.classList.remove("hide")
+        answerDisplay.classList.remove("hide")
+        timerCountEl.classList.remove("hide")
+                })
 }
 
 startGame()
 
 function showQuestion() {
-
     //randomize const questions
     let randomizer = Math.floor(Math.random() * questions.length)
     for (let i = 0; i < questions.length; i++) {
@@ -109,26 +110,31 @@ function showQuestion() {
         createButton.setAttribute("class","button");
         createButton.addEventListener("click",() => {
             questionsNumber--
-            if (questionsNumber <= 0) {
-                gameOver()
-            }
             setTimeout(()=> {
                 showQuestion()
-            },1000)
+            },500)
             if (createButton.innerText.includes (`${currentQuestion.correct}`) ===true) {
-                createButton.classList.add("correctStyle")
                 score++
+                createButton.classList.add("correctStyle")
+                questions.splice(randomizer,1)
+                
 
             } else {
                 createButton.classList.add("incorrectStyle")
                 timerCount -= 10
             }
+            if (questionsNumber <= 0) {
+                gameOver()
+            }
+
         })
-        createButton.textContent = `${possibleAnswer}`    
+
+        createButton.textContent = `${possibleAnswer}`   
+        return score
         })
+
 }}
 
-//timer function
 function startTimer(){
     let countdown = setInterval(() => {
         timerCount--
@@ -140,18 +146,30 @@ function startTimer(){
             }
     },1000)
 }
+dispScore.textContent = score;
 function gameOver() {
+    dispScore.textContent = score;
+    timerCountEl.classList.add("hide")
     questionDisplay.classList.add("hide")
     answerDisplay.classList.add("hide")
-    newGameButton.classList.remove("hide")
+    // newGameButton.classList.remove("hide")
     gameOverEl.classList.remove("hide")
 }
 
-//create var that stores question lengths as number
-//each click of answer button removes 1 from that var
-//when it reaches 0, go to gameover
-function questionsCountdown(){
 
-    console.log(questionsNumber)
-
+saveDataBtn.addEventListener("click", (form) => {
+    var playerName = document.getElementById("player-name")
+    form.preventDefault();    
+    localStorage.setItem("Player name:", playerName.value)
+    localStorage.setItem("Saved score:", score)
+    SaveInfo()
 }
+)
+
+function SaveInfo (){
+    var savedScore = localStorage.getItem("Saved score:");
+    var savedPlayer = localStorage.getItem("Player name:");
+    dispSavedScore.textContent = savedScore;
+    dispPlayer.textContent = savedPlayer;
+}
+

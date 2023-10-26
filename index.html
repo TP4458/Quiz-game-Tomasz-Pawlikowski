@@ -13,16 +13,19 @@
 <div class = "submit-answer"></div>
 
 <ul class = infoBox class = hide>
-    <li>Score: <span id = score></span></li>
+    <li>Score: <span class = "score"></span></li>
     <li>time left: <span id = timer></span></li>
-    <li id = hi-score></li>
-    <li id = saved-player></li>
+  
 </ul>
 <button class="button" class = "hide" id = "new-game" >NEW GAME</button>
 <div id="end-game" class = "hide">
     <h3>Game Over!</h3>
-    <p>You scored <span id = "score"></span> points.</p>
-    <p>Enter your name: <input type="text" id="player-name" max="8"/> <button id = "send-score-btn">Submit</button> </p>
+    <p>Save your score:</p>
+    <p>Enter your name: <input type="text" id="player-name"  max="8"/> <button id = "submit" id = "send-score-btn">OK</button> </p>
+</div>
+<div>
+    <p>Saved player: <span id ="saved-player"></span></p>
+    <p>Saved score: <span id = "saved-score"></span></p>
 </div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="./Assets/js/script.js"></script>
